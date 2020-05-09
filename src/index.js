@@ -30,6 +30,7 @@ class App extends React.Component {
         super();
         // store todos in state, comes with a few examples
         this.state = {
+            // inputVal: '',
             todos: [{
                     id: 0,
                     text: "Click a TODO to toggle it",
@@ -42,16 +43,17 @@ class App extends React.Component {
                 },
             ],
         }
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-  // main render func of the app
+    // main render func of the app
     render() {
         return (
             <div>
                 <span> Total TODOs: {this.state.todos.length} </span>
                 <span> Unchecked TODOs: {this.numberToggledTodos()} </span>
                 <p/> {/* Line break */}
-                <button onClick={() => this.addTodo()}>Add TODO</button>
+                <input type="text" onKeyUp={this.handleKeyUp} />
                 <ul>
                     {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} onToggle={() => this.toggleTodo(todo.id)}/> ) )}
                     {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes unique a function to delete that todo and one toggle that todo with that todos id. */}
@@ -61,9 +63,9 @@ class App extends React.Component {
     }
 
     // called when button is clicked to add todo item
-    addTodo() {
+    addTodo(inputText) {
         // TODO: replace this with a text box not just a prompt
-        const inputText = prompt("TODO text?");
+        // const inputText = prompt("TODO text?");
         // Updates state with a new array of all the todos plus a new one
         this.setState({
             todos: [
@@ -103,7 +105,20 @@ class App extends React.Component {
         const uncheckedTodos = this.state.todos.filter(todo => todo.checked === false);
         return uncheckedTodos.length;
     }
-  }
+
+
+    handleChange() {
+        // this.setState({
+        // onChange={this.handleChange}
+    }
+
+    handleKeyUp(e) {
+        if (e.keyCode === 13) {
+            this.addTodo(e.target.value);
+            e.target.value = '';
+        }
+    }
+}
 
 // Tells react to call the App component's renderer
 ReactDOM.render(
