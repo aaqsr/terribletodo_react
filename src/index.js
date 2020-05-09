@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 let id = 2; // 0, 1 reserved for example
-// possible bug? eventually this number might overflow? since it doesn't get reset unless the page is refreshed. but that wont happen right
-// right?
 
 
 // How a todo item looks like:
 const Todo = props => {
-    console.log(props);
+    // console.log(props);  // For debugging purposes
     return (
         <div>
             <li>
@@ -30,7 +28,6 @@ class App extends React.Component {
         super();
         // store todos in state, comes with a few examples
         this.state = {
-            // inputVal: '',
             todos: [{
                     id: 0,
                     text: "Click a TODO to toggle it",
@@ -106,12 +103,7 @@ class App extends React.Component {
         return uncheckedTodos.length;
     }
 
-
-    handleChange() {
-        // this.setState({
-        // onChange={this.handleChange}
-    }
-
+    // Handles key press in the input box
     handleKeyUp(e) {
         if (e.keyCode === 13) {
             this.addTodo(e.target.value);
@@ -120,7 +112,7 @@ class App extends React.Component {
     }
 }
 
-// Tells react to call the App component's renderer
+// Tells react to call the App component's renderer at root element
 ReactDOM.render(
     <div>
         <App />
