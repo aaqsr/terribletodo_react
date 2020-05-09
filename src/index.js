@@ -50,17 +50,19 @@ class App extends React.Component {
     removeTodo(id) {
         this.setState({
             todos: this.state.todos.filter((todo) => (todo.id !== id) )
-        })
+        });
     }
 
     render() {
         return ( // renders the app
             <div>
-            <button onClick={() => this.addTodo()}>Add TODO</button>
-            <ul>
-                {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} /> ) )}
-                {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes a unique function to delete that todo with that todo's id. */}
-            </ul>
+                <span>Total TODOs: {this.state.todos.length}</span>
+                <p/> {/* Line break */}
+                <button onClick={() => this.addTodo()}>Add TODO</button>
+                <ul>
+                    {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} /> ) )}
+                    {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes a unique function to delete that todo with that todo's id. */}
+                </ul>
             </div>
         )
     }
