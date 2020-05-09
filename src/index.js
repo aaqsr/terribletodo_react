@@ -15,14 +15,15 @@ const Todo = props => {
     )
 }
 
+let id = 2;     // 0, 1 reserved for example
+
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             todos: [
-                {text:"something"},
-                {text:"another example"},
-                {text:"etc"},
+                {id: 0, text:"something"},
+                {id: 1, text:"another example"},
             ],
         }
     }
@@ -30,13 +31,13 @@ class App extends React.Component {
     addTodo() {
         // TODO: replace this with a textbox not just a prompt
         const inputText = prompt("TODO text?");
-        this.setState({todos: [...this.state.todos, {text:inputText}]});
+        this.setState({todos: [...this.state.todos, {id: id++, text:inputText}]});
     }
 
     render() {
         return (
             <div>
-            <button onClick={() => this.addTodo()} />
+            <button onClick={() => this.addTodo()}>Add TODO</button>
             <ul>
                 {this.state.todos.map(todo => (<Todo todo={todo}/>))}   {/* Maps over the entire array, one element at a time*/}
             </ul>
