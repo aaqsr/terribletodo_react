@@ -8,7 +8,7 @@ const Todo = props => {
         <div>
             <li>
                  <input type="checkbox"/>
-                 <span>{props.todo} </span>
+                 <span>{props.todo.text} </span>
                  <button>Delete</button>
             </li>
         </div>
@@ -19,14 +19,18 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: ["something", "another example", "etc"],
+            todos: [
+                {text:"something"},
+                {text:"another example"},
+                {text:"etc"},
+            ],
         }
     }
 
     addTodo() {
         // TODO: replace this with a textbox not just a prompt
-        const text = prompt("TODO text?");
-        this.setState({todos: [...this.state.todos, text]});
+        const inputText = prompt("TODO text?");
+        this.setState({todos: [...this.state.todos, {text:inputText}]});
     }
 
     render() {
@@ -34,7 +38,7 @@ class App extends React.Component {
             <div>
             <button onClick={() => this.addTodo()} />
             <ul>
-                {this.state.todos.map(todo => (<Todo todo={todo}/>))}
+                {this.state.todos.map(todo => (<Todo todo={todo}/>))}   {/* Maps over the entire array, one element at a time*/}
             </ul>
             </div>
         )
