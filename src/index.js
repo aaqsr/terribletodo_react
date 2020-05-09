@@ -6,7 +6,9 @@ let id = 2; // 0, 1 reserved for example
 // possible bug? eventually this number might overflow? since it doesn't get reset unless the page is refreshed. but that wont happen right
 // right?
 
-const Todo = props => { // How a todo item looks like:
+
+// How a todo item looks like:
+const Todo = props => {
     console.log(props);
     return (
         <div>
@@ -21,27 +23,48 @@ const Todo = props => { // How a todo item looks like:
     )
 }
 
+// Main app class
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { // declare state, comes with a few examples
+    // No props passed
+    constructor() {
+        super();
+        // store todos in state, comes with a few examples
+        this.state = {
             todos: [{
                     id: 0,
-                    text: "something",
+                    text: "Click a TODO to toggle it",
                     checked: false,
                 },
                 {
                     id: 1,
-                    text: "another example",
+                    text: "Click delete to delete that TODO",
                     checked: true,
                 },
             ],
         }
     }
 
-    addTodo() { // called when button is clicked to add todo item
+  // main render func of the app
+    render() {
+        return (
+            <div>
+                <span> Total TODOs: {this.state.todos.length} </span>
+                <span> Unchecked TODOs: {this.numberToggledTodos()} </span>
+                <p/> {/* Line break */}
+                <button onClick={() => this.addTodo()}>Add TODO</button>
+                <ul>
+                    {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} onToggle={() => this.toggleTodo(todo.id)}/> ) )}
+                    {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes unique a function to delete that todo and one toggle that todo with that todos id. */}
+                </ul>
+            </div>
+        )
+    }
+
+    // called when button is clicked to add todo item
+    addTodo() {
         // TODO: replace this with a text box not just a prompt
         const inputText = prompt("TODO text?");
+        // Updates state with a new array of all the todos plus a new one
         this.setState({
             todos: [
                 ...this.state.todos,
@@ -54,12 +77,14 @@ class App extends React.Component {
         });
     }
 
+    // passed with a unique id to every todos delete button. Updates state with array of all the todos with that one filtered out
     removeTodo(id) {
         this.setState({
             todos: this.state.todos.filter((todo) => (todo.id !== id))
         });
     }
 
+    // passed with a unique id to every todo. Updates state with array of all the todos with that todos checked value flipped
     toggleTodo(id) {
         this.setState({
             todos: this.state.todos.map((todo) => {
@@ -73,27 +98,14 @@ class App extends React.Component {
         });
     }
 
+    // returns the number of checked todos
     numberToggledTodos() {
         const uncheckedTodos = this.state.todos.filter(todo => todo.checked === false);
         return uncheckedTodos.length;
     }
+  }
 
-    render() {
-        return ( // renders the app
-            <div>
-                <span> Total TODOs: {this.state.todos.length} </span>
-                <span> Unchecked TODOs: {this.numberToggledTodos()} </span>
-                <p/> {/* Line break */}
-                <button onClick={() => this.addTodo()}>Add TODO</button>
-                <ul>
-                    {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} onToggle={() => this.toggleTodo(todo.id)}/> ) )}
-                    {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes unique functions to delete that todo or toggle that todo with that todos id. */}
-                </ul>
-            </div>
-        )
-    }
-}
-
+// Tells react to call the App component's renderer
 ReactDOM.render(
     <div>
         <App />
