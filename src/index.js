@@ -6,9 +6,20 @@ import './index.css';
  //                <span>{}</span>
  //                <span><button>delete</button></span>
 
+const Todo = props => {
+    console.log(props);
+    return (
+    <div>
+        <li>
+            <input type="checkbox"/>
+            <span>{props.todo} </span>
+            <button>Delete</button>
+        </li>
+    </div>
+)
+}
 
-
-class Todo extends React.Component {
+class App extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -18,13 +29,13 @@ class Todo extends React.Component {
     render () {
         return (
             <ul>
-                {this.state.todos.map((arr) => ( <li>{arr}</li> ))}
+                {this.state.todos.map(todo => (<Todo todo={todo}/>))}
             </ul>
         )
    }
 }
 
 ReactDOM.render(
-    <Todo />,
+    <App />,
   document.getElementById('root')
 );
