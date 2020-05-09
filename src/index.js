@@ -30,12 +30,12 @@ class App extends React.Component {
         this.state = {
             todos: [{
                     id: 0,
-                    text: "Click a TODO to toggle it",
+                    text: "click a todo to toggle it",
                     checked: false,
                 },
                 {
                     id: 1,
-                    text: "Click delete to delete that TODO",
+                    text: "click delete to delete that todo",
                     checked: true,
                 },
             ],
@@ -46,11 +46,13 @@ class App extends React.Component {
     // main render func of the app
     render() {
         return (
-            <div>
-                <span> Total TODOs: {this.state.todos.length} </span>
-                <span> Unchecked TODOs: {this.numberToggledTodos()} </span>
+            <div id="app">
+                <div id="counters">
+                    <span> total: {this.state.todos.length} </span>
+                    <span> left: {this.numberToggledTodos()} </span>
+                </div>
                 <p/> {/* Line break */}
-                <input type="text" onKeyUp={this.handleKeyUp} />
+                <input type="text" onKeyUp={this.handleKeyUp} placeholder="i have to..."/>
                 <ul>
                     {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} onToggle={() => this.toggleTodo(todo.id)}/> ) )}
                     {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes unique a function to delete that todo and one toggle that todo with that todos id. */}
