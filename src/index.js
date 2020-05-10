@@ -108,8 +108,12 @@ class App extends React.Component {
     // Handles key press in the input box
     handleKeyUp(e) {
         if (e.keyCode === 13) {
-            this.addTodo(e.target.value);
-            e.target.value = '';
+            if (e.target.value.trim() === '') {
+                alert("Please enter something first :)")
+            } else {
+                this.addTodo(e.target.value.trim());
+                e.target.value = '';
+            }
         }
     }
 }
