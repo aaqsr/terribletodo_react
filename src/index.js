@@ -9,14 +9,17 @@ let id = 2; // 0, 1 reserved for example
 const Todo = props => {
     // console.log(props);  // For debugging purposes
     return (
-        <div>
+        <div class="todoItem">
             <li>
                  <input type="checkbox" checked={props.todo.checked} onClick={props.onToggle}/>     {/* todo is checked or not based on that props.todo.checked property */}
                  <span onClick={props.onToggle}>    {/* Let's user click on the text and still have it toggle */}
                     {props.todo.text}
                  </span>
-                 <button onClick={props.onDelete} >Delete</button>
+                 <span class="delButton">
+                    <button onClick={props.onDelete} >Delete</button>
+                 </span>
             </li>
+            <p/>
         </div>
     )
 }
@@ -52,7 +55,9 @@ class App extends React.Component {
                     <span> left: {this.numberToggledTodos()} </span>
                 </div>
                 <p/> {/* Line break */}
-                <input type="text" onKeyUp={this.handleKeyUp} placeholder="i have to..."/>
+                <div id="inputBox">
+                    <input type="text" onKeyUp={this.handleKeyUp} placeholder="i have to..."/>
+                </div>
                 <ul>
                     {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} onToggle={() => this.toggleTodo(todo.id)}/> ) )}
                     {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes unique a function to delete that todo and one toggle that todo with that todos id. */}
@@ -121,6 +126,7 @@ class App extends React.Component {
 // Tells react to call the App component's renderer at root element
 ReactDOM.render(
     <div>
+        <h1>todo</h1>
         <App />
     </div>,
     document.getElementById('root')
