@@ -49,6 +49,8 @@ class App extends React.Component {
     // main render func of the app
     render() {
         return (
+            <div>
+                <h1>todo</h1>
             <div id="app">
                 <div id="counters">
                     <span> total: {this.state.todos.length} </span>
@@ -62,6 +64,7 @@ class App extends React.Component {
                     {this.state.todos.map(todo => ( <Todo todo={todo} onDelete={() => this.removeTodo(todo.id)} onToggle={() => this.toggleTodo(todo.id)}/> ) )}
                     {/* Takes each element in the array and passes it one by one with the name of "todo" as the prop of the Todo component. Also passes unique a function to delete that todo and one toggle that todo with that todos id. */}
                 </ul>
+            </div>
             </div>
         )
     }
@@ -125,9 +128,6 @@ class App extends React.Component {
 
 // Tells react to call the App component's renderer at root element
 ReactDOM.render(
-    <div>
-        <h1>todo</h1>
-        <App />
-    </div>,
+        <App />,
     document.getElementById('root')
 );
