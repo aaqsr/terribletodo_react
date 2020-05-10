@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/terribletodo_react/static/css/main.8e045474.chunk.css",
+    "main.js": "/terribletodo_react/static/js/main.f39d40d3.chunk.js",
+    "main.js.map": "/terribletodo_react/static/js/main.f39d40d3.chunk.js.map",
+    "runtime-main.js": "/terribletodo_react/static/js/runtime-main.56e252eb.js",
+    "runtime-main.js.map": "/terribletodo_react/static/js/runtime-main.56e252eb.js.map",
+    "static/js/2.1c6ff295.chunk.js": "/terribletodo_react/static/js/2.1c6ff295.chunk.js",
+    "static/js/2.1c6ff295.chunk.js.map": "/terribletodo_react/static/js/2.1c6ff295.chunk.js.map",
+    "index.html": "/terribletodo_react/index.html",
+    "precache-manifest.bb4769b8c3d580ac9e42d87aecf2afe4.js": "/terribletodo_react/precache-manifest.bb4769b8c3d580ac9e42d87aecf2afe4.js",
+    "service-worker.js": "/terribletodo_react/service-worker.js",
+    "static/css/main.8e045474.chunk.css.map": "/terribletodo_react/static/css/main.8e045474.chunk.css.map",
+    "static/js/2.1c6ff295.chunk.js.LICENSE.txt": "/terribletodo_react/static/js/2.1c6ff295.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.56e252eb.js",
+    "static/js/2.1c6ff295.chunk.js",
+    "static/css/main.8e045474.chunk.css",
+    "static/js/main.f39d40d3.chunk.js"
+  ]
+}
